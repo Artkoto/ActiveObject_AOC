@@ -1,13 +1,12 @@
-package implementation;
+package client;
 
-import api.Capteur;
-import api.ObserverDeCapteur;
+import Sched.ObserverDeCapteur;
 
-public class CapteurImpl implements Capteur {
+public class SensorImpl implements Sensor {
 //    TODO ajout d'attributs
     @Override
-    public void attach(ObserverDeCapteur o) {
 
+    public void attach(ObserverDeCapteur o) {
     }
 
     @Override
