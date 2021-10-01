@@ -1,10 +1,11 @@
 package client;
 
-import Sched.ObserverDeCapteur;
+import Sched.ObserverOfSensor;
 
 public interface Sensor {
 
-    void attach (ObserverDeCapteur o);
+    void attach (ObserverOfSensor o);
+    void detach (ObserverOfSensor o);
     Integer getValue();
     void tick();
 }

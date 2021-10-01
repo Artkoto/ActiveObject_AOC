@@ -1,11 +1,13 @@
 package mi;
 
-import Sched.ObserverDeCapteur;
-import client.Canal;
+import Sched.ObserverOfSensor;
 import client.Sensor;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
+
+import static java.util.concurrent.TimeUnit.*;
 
 
 /**
@@ -15,14 +17,14 @@ import java.util.concurrent.ScheduledExecutorService;
 public class Update implements Callable {
     //todo ajout d'attribut
 
-    private ObserverDeCapteur observerDeCapteur;
+    private ObserverOfSensor observerDeSensor;
     private Sensor sensor;
 
     /**
      * Constructor
      */
-    public Update(ObserverDeCapteur observerGenerator, Sensor sensor) {
-        this.observerDeCapteur = observerGenerator;
+    public Update(ObserverOfSensor observerGenerator, Sensor sensor) {
+        this.observerDeSensor = observerGenerator;
         this.sensor = sensor;
     }
 
@@ -31,10 +33,10 @@ public class Update implements Callable {
      * @return nothing
      */
     @Override
-    public Object call() throws Exception {
-        this.observerDeCapteur.update(this.sensor);
-        ScheduledExecutorService sc;
-        sc.schedule(call() -> observerDeCapteur.update(this.sensor), , 1000;)
+    public Future call() throws Exception {
+
+        ScheduledExecutorService scheduledExectorService = null;
+        return scheduledExectorService.schedule(() -> observerDeSensor.update(this.sensor), 1000, MILLISECONDS);
 
     }
 }

@@ -2,6 +2,6 @@ package Sched;
 
 import client.Sensor;
 
-public interface ObserverDeCapteur  {
+public interface ObserverOfSensor {
     void update(Sensor s);
 }

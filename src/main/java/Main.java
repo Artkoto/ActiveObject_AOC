@@ -5,8 +5,7 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 public class Main {
     public static void main(String[] args) {
-        ScheduledExecutorService scheduler = new ScheduledThreadPoolExecutor();
-
+        ScheduledExecutorService scheduler = new ScheduledThreadPoolExecutor(10);
 
     }
 }
