@@ -1,5 +1,6 @@
 package Sched;
 
+
 import client.Sensor;
 
 public interface ObserverOfSensor {

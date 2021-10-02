@@ -4,14 +4,18 @@ import Sched.ObserverOfSensor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.logging.Logger;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class SensorImpl implements Sensor {
-//    TODO ajout d'attributs
+    private static final Logger logger = Logger.getLogger(SensorImpl.class.getName());
 
-    private int increment;
+    //    TODO ajout d'attributs
+
     private Integer value;
     private List<ObserverOfSensor> observers = new ArrayList<>();
-
     /**
      * Construtor
      */
@@ -21,13 +25,11 @@ public class SensorImpl implements Sensor {
 
     /**
      * Constructor
-     * @param increment
      * @param v
      * @param observers
      */
-    public SensorImpl(int increment, Integer v, List<ObserverOfSensor> observers ){
+    public SensorImpl(Integer v, List<ObserverOfSensor> observers ){
         this.value=v;
-        this.increment=increment;
         this.observers=observers;
     }
     /**
@@ -36,7 +38,6 @@ public class SensorImpl implements Sensor {
     @Override
     public void attach(ObserverOfSensor o) {
         this.observers.add(o);
-
     }
 
     @Override
@@ -49,7 +50,7 @@ public class SensorImpl implements Sensor {
      */
     @Override
     public Integer getValue() {
-        return this.value;
+        return value;
     }
 
     /**
@@ -57,6 +58,13 @@ public class SensorImpl implements Sensor {
      */
     @Override
     public void tick() {
-        this.increment += 1;
+        notifyObservers();
+        this.value++;
+    }
+
+    public void notifyObservers(){
+        for( ObserverOfSensor ob : this.observers){
+            ob.update(this);
+        }
     }
 }

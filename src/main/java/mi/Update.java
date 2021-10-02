@@ -2,10 +2,12 @@ package mi;
 
 import Sched.ObserverOfSensor;
 import client.Sensor;
+import client.SensorImpl;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.logging.Logger;
 
 import static java.util.concurrent.TimeUnit.*;
 
@@ -15,7 +17,8 @@ import static java.util.concurrent.TimeUnit.*;
  * @author  k.Ougueur
  */
 public class Update implements Callable {
-    //todo ajout d'attribut
+    private static final Logger logger = Logger.getLogger(Update.class.getName());
+
 
     private ObserverOfSensor observerDeSensor;
     private Sensor sensor;
@@ -36,7 +39,7 @@ public class Update implements Callable {
     public Future call() throws Exception {
 
         ScheduledExecutorService scheduledExectorService = null;
-        return scheduledExectorService.schedule(() -> observerDeSensor.update(this.sensor), 1000, MILLISECONDS);
+        return scheduledExectorService.schedule(() -> observerDeSensor.update(sensor), 1000, MILLISECONDS);
 
     }
 }
